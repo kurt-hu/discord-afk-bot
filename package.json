@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "cross-env NODE_ENV=development nodemon index.js",
-    "build": "cross-env NODE_ENV=production node index.js"
+    "prod_build": "cross-env NODE_ENV=production node index.js"
   },
   "keywords": [],
   "author": "",

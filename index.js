@@ -60,12 +60,12 @@ client.on('messageCreate', message => {
 client.on('voiceStateUpdate', (oldState, newState) => {
   if (newState.selfDeaf) {
     if (newState.id === cooper_user_id && newState.channelId !== cooper_afk_channel_id) {
-      console.log('cooper is deafened')
-
       let channelExists = newState.guild.channels.cache.get(cooper_afk_channel_id) !== undefined
 
       if (channelExists) {
-        newState.member.voice.setChannel(cooper_afk_channel_id)
+        if (newState.member.voice.channelId !== null) {
+          newState.member.voice.setChannel(cooper_afk_channel_id)
+        }
       } else {
         console.log('no cooper afk channel exists')
       }
