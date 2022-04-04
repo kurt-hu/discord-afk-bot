@@ -56,10 +56,18 @@ client.on('messageCreate', message => {
     })
   }
 
-  if (lowercase_msg.includes('wordle') && lowercase_msg.includes('x/6')) {
-    message.reply({
-      content: 'lol'
-    })
+  if (lowercase_msg.includes('wordle')) {
+    if (lowercase_msg.includes('x/6')) {
+      message.reply({
+        content: 'lol'
+      })
+    }
+
+    if (lowercase_msg.includes('1/6') || lowercase_msg.includes('2/6')) {
+      message.reply({
+        content: 'nice'
+      })
+    }
   }
 })
 
