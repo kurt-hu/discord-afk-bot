@@ -29,8 +29,8 @@ client.on('ready', () => {
 
 client.on('messageCreate', message => {
   if (message.author.bot) return;
-
   let lowercase_msg = message.content.toLowerCase()
+
   if (lowercase_msg.includes('cooper') && lowercase_msg.includes('afk')) {
     message.guild.members.fetch(cooper_user_id).then(cooper => {
       let isSelfDeafened = cooper.voice.selfDeaf
@@ -53,6 +53,12 @@ client.on('messageCreate', message => {
     })
     .catch(() => {
       console.log('cooper user not found')
+    })
+  }
+
+  if (lowercase_msg.includes('wordle') && lowercase_msg.includes('x/6')) {
+    message.reply({
+      content: 'lol'
     })
   }
 })
