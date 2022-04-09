@@ -56,6 +56,12 @@ client.on('messageCreate', message => {
     })
   }
 
+  if (lowercase_msg.includes('arctic monkey')) {
+    message.reply({
+      content: 'https://www.youtube.com/watch?v=okqGTtes1_I'
+    })
+  }
+
   if (lowercase_msg.includes('wordle')) {
     if (lowercase_msg.includes('x/6')) {
       message.reply({
