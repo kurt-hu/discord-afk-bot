@@ -62,6 +62,12 @@ client.on('messageCreate', message => {
     })
   }
 
+  if (lowercase_msg.includes('kendrick lamar')) {
+    message.reply({
+      content: 'woo woo'
+    })
+  }
+
   if (lowercase_msg.includes('wordle')) {
     if (lowercase_msg.includes('x/6')) {
       message.reply({
