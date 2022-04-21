@@ -81,6 +81,22 @@ client.on('messageCreate', message => {
       })
     }
   }
+
+  if (lowercase_msg.includes('is brandon ok')) {
+    let possibleReplies = [
+      "not sure if brandon is ok :thinking:",
+      "brandon is not ok, his team didn't pick stuns :(",
+      "brandon is not ok, he is waiting for the bus :pensive:",
+      "brandon is not here, he might be at the gym :muscle:",
+      "brandon is ok, he is learning how to code :nerd:",
+      "brandon is ok, he is eating chicken nuggets :chicken:"
+    ]
+    let reply = possibleReplies[Math.floor(Math.random() * possibleReplies.length)]
+
+    message.reply({
+      content: reply
+    })
+  }
 })
 
 client.on('voiceStateUpdate', (oldState, newState) => {
