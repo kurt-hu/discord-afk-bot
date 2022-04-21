@@ -1,5 +1,6 @@
 import DiscordJS, { Intents } from 'discord.js'
 import dotenv from 'dotenv'
+const deepai = require('deepai');
 dotenv.config()
 
 let cooper_user_id = '122869082071498752'
