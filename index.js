@@ -85,19 +85,36 @@ client.on('messageCreate', message => {
   if (lowercase_msg.includes('is brandon ok')) {
     let possibleReplies = [
       "not sure if brandon is ok :thinking:",
-      "brandon is not ok, his team didn't pick stuns :(",
+      "brandon is not ok, his team didn't pick stuns :confused:",
       "brandon is not ok, he is waiting for the bus :pensive:",
       "brandon is not here, he might be at the gym :muscle:",
       "brandon is ok, he is learning how to code :nerd:",
       "brandon is ok, he is eating chicken nuggets :chicken:"
     ]
-    let reply = possibleReplies[Math.floor(Math.random() * possibleReplies.length)]
+    let manualReply = possibleReplies[Math.floor(Math.random() * possibleReplies.length)]
 
-    message.reply({
-      content: reply
-    })
+    let automaticReply = await finishSentence("he is");
+    automaticReply = "not sure if brandon is ok :thinking:, " + automaticReply
+
+    if (Math.random() < 0.5) {
+      message.reply({
+        content: manualReply
+      })
+    } else {
+      message.reply({
+        content: automaticReply
+      })
+    }
   }
 })
+
+async function finishSentence(start) {
+  var resp = await deepai.callStandardApi("text-generator", {
+    text: start,
+  });
+  sentences = resp.replace(/([.?!])\s*(?=[A-Z])/g, "$1|").split("|")
+  return sentences[0]
+}
 
 client.on('voiceStateUpdate', (oldState, newState) => {
   if (newState.selfDeaf) {
