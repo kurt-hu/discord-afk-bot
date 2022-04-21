@@ -1,7 +1,9 @@
-import DiscordJS, { Intents } from 'discord.js'
-import dotenv from 'dotenv'
-const deepai = require('deepai');
+const DiscordJS = require('discord.js')
+const { Intents } = require('discord.js');
+const dotenv = require('dotenv')
+const deepai = require("deepai")
 dotenv.config()
+deepai.setApiKey(process.env.DEEPAI_API_KEY);
 
 let cooper_user_id = '122869082071498752'
 let testing_user_id = '420981509814484998'
@@ -94,16 +96,20 @@ client.on('messageCreate', message => {
     ]
     let manualReply = possibleReplies[Math.floor(Math.random() * possibleReplies.length)]
 
-    let automaticReply = await finishSentence("he is");
-    automaticReply = "not sure if brandon is ok :thinking:, " + automaticReply
-
     if (Math.random() < 0.5) {
       message.reply({
         content: manualReply
       })
     } else {
-      message.reply({
-        content: automaticReply
+      // let automaticReply = await finishSentence("he is");
+      // automaticReply = "not sure if brandon is ok :thinking:, " + automaticReply
+      // message.reply({
+      //   content: automaticReply
+      // })
+      finishSentence("he is").then(automaticReply => {
+        message.reply({
+          content: "not sure if brandon is ok :thinking:, " + automaticReply
+        })
       })
     }
   }
@@ -113,6 +119,7 @@ async function finishSentence(start) {
   var resp = await deepai.callStandardApi("text-generator", {
     text: start,
   });
+  resp = resp['output']
   sentences = resp.replace(/([.?!])\s*(?=[A-Z])/g, "$1|").split("|")
   return sentences[0]
 }
