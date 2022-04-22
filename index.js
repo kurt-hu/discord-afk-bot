@@ -87,7 +87,6 @@ client.on('messageCreate', message => {
 
   if (lowercase_msg.includes('is brandon ok')) {
     let possibleReplies = [
-      "not sure if brandon is ok :thinking:",
       "brandon is not ok, his team didn't pick stuns :confused:",
       "brandon is not ok, he is waiting for the bus :pensive:",
       "brandon is not here, he might be at the gym :muscle:",
@@ -96,7 +95,7 @@ client.on('messageCreate', message => {
     ]
     let manualReply = possibleReplies[Math.floor(Math.random() * possibleReplies.length)]
 
-    if (Math.random() < 0.5) {
+    if (Math.random() < 0.20) {
       message.reply({
         content: manualReply
       })
